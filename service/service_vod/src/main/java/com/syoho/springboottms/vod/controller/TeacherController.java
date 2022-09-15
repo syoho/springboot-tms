@@ -1,19 +1,22 @@
 package com.syoho.springboottms.vod.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-//import com.mysql.jdbc.StringUtils;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.syoho.springboottms.model.vod.Teacher;
 import com.syoho.springboottms.result.Result;
 import com.syoho.springboottms.vo.vod.TeacherQueryVo;
 import com.syoho.springboottms.vod.service.TeacherService;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+import io.swagger.annotations.ApiOperation;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,8 +59,8 @@ public class TeacherController {
         }
     }
 
-    //3.分页查询
-    @PostMapping("{page}/{limit}")
+  /*  //3.分页查询
+    @PostMapping("findQueryPage/{current}/{limit}")
     public Result findPage(@PathVariable long current,
                            @PathVariable long limit,
                            @RequestBody(required = false) TeacherQueryVo teacherQueryVo){//@RequestBody以json提交；与Post一起使用
@@ -101,9 +104,78 @@ public class TeacherController {
             //返回
             return Result.ok(pageModel);
         }
-
-
     }
+*/
+
+    //3 条件查询分页
+    @ApiOperation("条件查询分页")
+    @PostMapping("findQueryPage/{current}/{limit}")
+    public Result findPage(@PathVariable long current,
+                           @PathVariable long limit,
+                           @RequestBody(required = false) TeacherQueryVo teacherQueryVo) {
+        //创建page对象
+        Page<Teacher> pageParam = new Page<>(current,limit);
+
+        //获取条件值
+        String name = teacherQueryVo.getName();
+        Integer level = teacherQueryVo.getLevel();
+        String joinDateBegin = teacherQueryVo.getJoinDateBegin();
+        String joinDateEnd = teacherQueryVo.getJoinDateEnd();
+
+        //进行非空判断，条件封装
+        QueryWrapper<Teacher> wrapper = new QueryWrapper<>();
+        wrapper.like("name",name);
+        wrapper.eq("level",level);
+        wrapper.ge("join_date",joinDateBegin);
+        wrapper.le("join_date",joinDateEnd);
+
+        //调用方法分页查询
+        IPage<Teacher> pageModel = teacherService.page(pageParam, wrapper);
+        //返回
+        return Result.ok(pageModel);
+    }
+
+
+
+
+
+      /*  //判断teacherQueryVo对象是否为空
+        if(teacherQueryVo == null) {//查询全部
+            IPage<Teacher> pageModel =
+                    teacherService.page(pageParam,null);
+            return Result.ok(pageModel);
+        } else {
+            //获取条件值
+            String name = teacherQueryVo.getName();
+            Integer level = teacherQueryVo.getLevel();
+            String joinDateBegin = teacherQueryVo.getJoinDateBegin();
+            String joinDateEnd = teacherQueryVo.getJoinDateEnd();
+
+            //进行非空判断，条件封装
+            QueryWrapper<Teacher> wrapper = new QueryWrapper<>();
+            wrapper.like("name",name);
+            wrapper.eq("level",level);
+            wrapper.ge("join_date",joinDateBegin);
+            wrapper.le("join_date",joinDateEnd);
+
+*//*            if(!ObjectUtils.isEmpty(name)) {
+                wrapper.like("name",name);
+            }
+            if(!ObjectUtils.isEmpty(level)) {
+                wrapper.eq("level",level);
+            }
+            if(!ObjectUtils.isEmpty(joinDateBegin)) {
+                wrapper.ge("join_date",joinDateBegin);
+            }
+            if(!ObjectUtils.isEmpty(joinDateEnd)) {
+                wrapper.le("join_date",joinDateEnd);
+            }*//*
+
+*/
+
+
+
+
 
     //4.添加讲师
     @PostMapping("saveTeacher")
