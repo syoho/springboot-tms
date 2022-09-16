@@ -27,6 +27,7 @@ import java.util.List;
  * @author syoho
  * @since 2022-09-13
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/admin/vod/teacher")
 public class TeacherController {
@@ -59,7 +60,7 @@ public class TeacherController {
         }
     }
 
-  /*  //3.分页查询
+   //3.分页查询
     @PostMapping("findQueryPage/{current}/{limit}")
     public Result findPage(@PathVariable long current,
                            @PathVariable long limit,
@@ -84,16 +85,16 @@ public class TeacherController {
 
             //进行非空判断，条件封装
             QueryWrapper<Teacher> wrapper = new QueryWrapper<>();
-            if (!StringUtils.isEmpty(name)){
+            if (!ObjectUtils.isEmpty(name)){
                 wrapper.like("name",name);
             }
-            if (!StringUtils.isEmpty(name)){
+            if (!ObjectUtils.isEmpty(name)){
                 wrapper.eq("level",level);
             }
-            if(!StringUtils.isEmpty(joinDateBegin)) {
+            if(!ObjectUtils.isEmpty(joinDateBegin)) {
                 wrapper.ge("join_date",joinDateBegin);//>=
             }
-            if(!StringUtils.isEmpty(joinDateEnd)) {
+            if(!ObjectUtils.isEmpty(joinDateEnd)) {
                 wrapper.le("join_date",joinDateEnd);//<=
             }
 
@@ -105,73 +106,12 @@ public class TeacherController {
             return Result.ok(pageModel);
         }
     }
-*/
-
-    //3 条件查询分页
-    @ApiOperation("条件查询分页")
-    @PostMapping("findQueryPage/{current}/{limit}")
-    public Result findPage(@PathVariable long current,
-                           @PathVariable long limit,
-                           @RequestBody(required = false) TeacherQueryVo teacherQueryVo) {
-        //创建page对象
-        Page<Teacher> pageParam = new Page<>(current,limit);
-
-        //获取条件值
-        String name = teacherQueryVo.getName();
-        Integer level = teacherQueryVo.getLevel();
-        String joinDateBegin = teacherQueryVo.getJoinDateBegin();
-        String joinDateEnd = teacherQueryVo.getJoinDateEnd();
-
-        //进行非空判断，条件封装
-        QueryWrapper<Teacher> wrapper = new QueryWrapper<>();
-        wrapper.like("name",name);
-        wrapper.eq("level",level);
-        wrapper.ge("join_date",joinDateBegin);
-        wrapper.le("join_date",joinDateEnd);
-
-        //调用方法分页查询
-        IPage<Teacher> pageModel = teacherService.page(pageParam, wrapper);
-        //返回
-        return Result.ok(pageModel);
-    }
 
 
 
 
 
-      /*  //判断teacherQueryVo对象是否为空
-        if(teacherQueryVo == null) {//查询全部
-            IPage<Teacher> pageModel =
-                    teacherService.page(pageParam,null);
-            return Result.ok(pageModel);
-        } else {
-            //获取条件值
-            String name = teacherQueryVo.getName();
-            Integer level = teacherQueryVo.getLevel();
-            String joinDateBegin = teacherQueryVo.getJoinDateBegin();
-            String joinDateEnd = teacherQueryVo.getJoinDateEnd();
 
-            //进行非空判断，条件封装
-            QueryWrapper<Teacher> wrapper = new QueryWrapper<>();
-            wrapper.like("name",name);
-            wrapper.eq("level",level);
-            wrapper.ge("join_date",joinDateBegin);
-            wrapper.le("join_date",joinDateEnd);
-
-*//*            if(!ObjectUtils.isEmpty(name)) {
-                wrapper.like("name",name);
-            }
-            if(!ObjectUtils.isEmpty(level)) {
-                wrapper.eq("level",level);
-            }
-            if(!ObjectUtils.isEmpty(joinDateBegin)) {
-                wrapper.ge("join_date",joinDateBegin);
-            }
-            if(!ObjectUtils.isEmpty(joinDateEnd)) {
-                wrapper.le("join_date",joinDateEnd);
-            }*//*
-
-*/
 
 
 
@@ -189,11 +129,15 @@ public class TeacherController {
     }
 
     //5.修改讲师-根据id查询
-    @GetMapping("get/{id}")
+    @GetMapping("getTeacher/{id}")
     public Result get(@PathVariable Long id) {
         Teacher teacher = teacherService.getById(id);
         return Result.ok(teacher);
     }
+
+
+
+
 
     //6.修改讲师-最终实现
     @PostMapping("updateTeacher")
