@@ -4,6 +4,8 @@ import com.syoho.springboottms.model.vod.Subject;
 import com.syoho.springboottms.model.vod.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程科目 服务类
@@ -14,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SubjectService extends IService<Subject> {
 
+    List<Subject> selectSubjectList(Long id);
 }
