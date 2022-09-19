@@ -27,4 +27,13 @@ public class GlobalExceptionHandler {
         return Result.fail(null).message("执行了特定异常处理");
     }
 
+    //自定义异常处理
+    @ExceptionHandler(CustomException.class)
+    @ResponseBody
+    public Result error(CustomException e){
+        e.printStackTrace();
+        return Result.fail(null).message("执行了自定义异常处理");
+    }
+
+
 }

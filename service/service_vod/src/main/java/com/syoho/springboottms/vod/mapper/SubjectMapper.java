@@ -2,6 +2,7 @@ package com.syoho.springboottms.vod.mapper;
 
 import com.syoho.springboottms.model.vod.Subject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +12,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author syoho
  * @since 2022-09-16
  */
+
+@Repository
 public interface SubjectMapper extends BaseMapper<Subject> {
 
 }

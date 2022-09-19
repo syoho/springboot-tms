@@ -10,12 +10,15 @@ import lombok.Data;
  *
  * @author qy
  */
+
+//Excel导入导出
 @Data
 public class SubjectEeVo {
 
 	@ExcelProperty(value = "id" ,index = 0)
 	private Long id;
 
+	//表头
 	@ExcelProperty(value = "课程分类名称" ,index = 1)
 	private String title;
 
