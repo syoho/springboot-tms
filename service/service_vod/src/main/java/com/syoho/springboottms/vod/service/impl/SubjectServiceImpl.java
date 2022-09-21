@@ -69,7 +69,7 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
             response.setCharacterEncoding("utf-8");
 
             // URLEncoder.encode可以防止中文乱码，与easyexcel无关
-            String fileName = URLEncoder.encode("课程分类", "UTF-8");
+            String fileName = URLEncoder.encode("Course", "UTF-8");
             response.setHeader("Content-disposition", "attachment;filename="+ fileName + ".xlsx");
 
             //查询课程分类表所有数据
@@ -87,10 +87,10 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
 
             //EasyExcel写操作
             EasyExcel.write(response.getOutputStream(), SubjectEeVo.class)
-                    .sheet("课程分类")
+                    .sheet("Course")
                     .doWrite(subjectEeVoList);
         }catch(Exception e) {
-            throw new CustomException(20001,"导出失败");
+            throw new CustomException(20001,"Export Failed");
         }
 
     }
@@ -104,7 +104,7 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
                     SubjectEeVo.class,
                     subjectListener).sheet().doRead();
         } catch (IOException e) {
-            throw new CustomException(20001,"导入失败");
+            throw new CustomException(20001,"Import Failed");
         }
     }
 

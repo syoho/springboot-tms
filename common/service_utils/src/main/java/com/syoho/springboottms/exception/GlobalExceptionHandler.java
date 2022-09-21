@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Result error(Exception e){
         e.printStackTrace();
-        return Result.fail(null).message("执行了全局异常处理");
+        return Result.fail(null).message("An error occurred. Please try to change the Name of teacher.");
     }
 
 
@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Result error(ArithmeticException e){
         e.printStackTrace();
-        return Result.fail(null).message("执行了特定异常处理");
+        return Result.fail(null).message("An error occurred. Please try to change the Name of teacher.");
     }
 
     //自定义异常处理
@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Result error(CustomException e){
         e.printStackTrace();
-        return Result.fail(null).message("执行了自定义异常处理");
+        return Result.fail(null).message("An error occurred. Please try to change the Name of teacher.");
     }
 
 

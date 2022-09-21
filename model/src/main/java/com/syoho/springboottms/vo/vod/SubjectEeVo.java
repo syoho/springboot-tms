@@ -15,17 +15,17 @@ import lombok.Data;
 @Data
 public class SubjectEeVo {
 
-	@ExcelProperty(value = "id" ,index = 0)
+	@ExcelProperty(value = "ID" ,index = 0)
 	private Long id;
 
 	//表头
-	@ExcelProperty(value = "课程分类名称" ,index = 1)
+	@ExcelProperty(value = "Course" ,index = 1)
 	private String title;
 
-	@ExcelProperty(value = "上级id" ,index = 2)
+	@ExcelProperty(value = "Parent ID" ,index = 2)
 	private Long parentId;
 
-	@ExcelProperty(value = "排序" ,index = 3)
+	@ExcelProperty(value = "Sort" ,index = 3)
 	private Integer sort;
 
 
