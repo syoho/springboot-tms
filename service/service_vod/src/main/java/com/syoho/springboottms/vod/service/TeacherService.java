@@ -1,7 +1,7 @@
 package com.syoho.springboottms.vod.service;
 
-import com.syoho.springboottms.model.vod.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.syoho.springboottms.model.vod.Teacher;
 
 /**
  * <p>
