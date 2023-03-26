@@ -17,6 +17,8 @@ This project is a web-based application for managing teachers and courses. It is
 
 ## Features
 
+![image](https://raw.githubusercontent.com/syoho/github-image/main/tms/tms-login.gif)
+
 The Teacher Management System provides the following features:
 
 ### Teacher Management
