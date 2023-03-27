@@ -29,6 +29,8 @@ The Teacher Management System provides the following features:
 
 - Add teacher information
 
+![image](https://raw.githubusercontent.com/syoho/github-image/main/tms/Add%20teacher%20information.gif)
+
 - Delete teacher information
 - Modify teacher information
 
