@@ -37,6 +37,8 @@ The Teacher Management System provides the following features:
 
 - Modify teacher information
 
+![image](https://raw.githubusercontent.com/syoho/github-image/main/tms/Modify%20teacher%20information.gif)
+
 ### Course Management
 
 - Display course information
