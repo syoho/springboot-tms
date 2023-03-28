@@ -42,8 +42,16 @@ The Teacher Management System provides the following features:
 ### Course Management
 
 - Display course information
+
+![image](https://raw.githubusercontent.com/syoho/github-image/main/tms/Display%20course%20information.gif)
+
 - Export course information
+
+![image](https://raw.githubusercontent.com/syoho/github-image/main/tms/Export%20course%20information.gif)
+
 - Import course information
+
+![image](https://raw.githubusercontent.com/syoho/github-image/main/tms/Import%20course%20information.gif)
 
 ## Functionality
 
